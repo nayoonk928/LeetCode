@@ -10,10 +10,10 @@ class Solution:
         # 주어진 문자열의 각 위치를 중심으로 확장하는 방법을 사용
         for i in range(len(s)):
             # 현재 위치를 중심으로 하는 홀수 길이 팰린드롬의 길이
-            len1 = self.expand_around_center(s, i, i)
+            len1 = self.expand(s, i, i)
             
             # 현재 위치와 오른쪽의 위치를 중심으로 하는 짝수 길이 팰린드롬의 길이
-            len2 = self.expand_around_center(s, i, i + 1)
+            len2 = self.expand(s, i, i + 1)
             
             # 두 길이 중에서 더 긴 팰린드롬의 길이 선택
             max_len = max(len1, len2)
@@ -26,7 +26,7 @@ class Solution:
         # 시작부터 끝까지의 부분 문자열이 가장 긴 팰린드롬
         return s[start:end + 1]
     
-    def expand_around_center(self, s: str, left: int, right: int) -> int:
+    def expand(self, s: str, left: int, right: int) -> int:
         # 현재 중심에서 팰린드롬이 확장될 수 있는 한 확장
         while left >= 0 and right < len(s) and s[left] == s[right]:
             left -= 1

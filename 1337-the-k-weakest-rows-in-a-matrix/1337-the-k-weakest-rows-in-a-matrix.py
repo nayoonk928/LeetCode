@@ -1,14 +1,14 @@
 class Solution:
     def kWeakestRows(self, mat: List[List[int]], k: int) -> List[int]:
         answer = []
-        mat_one_count = collections.defaultdict(int)  # index와 1의 개수 저장
+        heap = []  # min heap -> (1의 개수, index)
         
         for idx, mat_row in enumerate(mat):
-            mat_one_count[idx] = mat_row.count(1)
+            count_ones = mat_row.count(1)
+            heapq.heappush(heap, (count_ones, idx))
         
-        sorted_mat_one_count = sorted(mat_one_count.items(), key=lambda x:x[1])
-        
-        for key, value in sorted_mat_one_count:
-            answer.append(key)
+        for _ in range(k):
+            count_ones, idx = heapq.heappop(heap)
+            answer.append(idx)
             
-        return answer[:k]
+        return answer

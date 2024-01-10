@@ -20,13 +20,11 @@ class Solution:
         
         
     def dfs(self, digits, current_path, result):
-        # 끝까지 탐색했다면 result 반환
         if not digits:
             result.append("".join(current_path))
             return
         
         current_digit = digits[0]
         for char in self.chars[current_digit]:
-            # digits의 첫 번째 원소 제외한 나머지 부분, 지금까지 저장된 문자 + 현재 문자
             self.dfs(digits[1:], current_path + [char], result)
         

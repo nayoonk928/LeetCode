@@ -12,5 +12,5 @@ class Solution:
             i += 1
         
         result = ''.join(map(str, nums))
-        return str(int(result)) if int(result) != 0 else "0"
+        return result if result[0] != '0' else '0'
         

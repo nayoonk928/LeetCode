@@ -5,7 +5,7 @@ class Solution:
         for u, v, w in times:
             graph[u].append((v, w))
 
-        dist = [float('inf')] * (n + 1)
+        dist = [int(1e9)] * (n + 1)
         dist[k] = 0
 
         pq = [(0, k)]
@@ -23,4 +23,4 @@ class Solution:
                     heapq.heappush(pq, (cost, adj))
 
         max_dist = max(dist[1:])
-        return max_dist if max_dist < float('inf') else -1
+        return max_dist if max_dist < int(1e9) else -1

@@ -3,24 +3,31 @@ class Solution:
         graph = [[] for _ in range(n + 1)]
 
         for u, v, w in times:
-            graph[u].append((v, w))
-
+            graph[u].append((v, w)) 
+        
         dist = [int(1e9)] * (n + 1)
+    
+        pq = []
+        heapq.heappush(pq, (0, k))
+        dist[0] = 0
         dist[k] = 0
-
-        pq = [(0, k)]
-
+    
+        cnt = 1
         while pq:
             time, node = heapq.heappop(pq)
-
-            if time > dist[node]:
+    
+            if dist[node] < time:
                 continue
-
+    
             for adj, w in graph[node]:
                 cost = time + w
                 if cost < dist[adj]:
+                    if dist[adj] == int(1e9):
+                        cnt += 1
                     dist[adj] = cost
                     heapq.heappush(pq, (cost, adj))
-
-        max_dist = max(dist[1:])
-        return max_dist if max_dist < int(1e9) else -1
+    
+        if cnt == n:
+            return max(dist)
+    
+        return -1

@@ -4,26 +4,23 @@ class Solution:
 
         for u, v, w in times:
             graph[u].append((v, w))
-    
-        dist = [int(1e9)] * len(graph)
-    
-        pq = []
-        heapq.heappush(pq, (0, k))
+
+        dist = [float('inf')] * (n + 1)
         dist[k] = 0
-    
+
+        pq = [(0, k)]
+
         while pq:
             time, node = heapq.heappop(pq)
-    
-            if dist[node] < time:
+
+            if time > dist[node]:
                 continue
-    
+
             for adj, w in graph[node]:
                 cost = time + w
                 if cost < dist[adj]:
                     dist[adj] = cost
                     heapq.heappush(pq, (cost, adj))
-    
-        if all(dist[i] != int(1e9) for i in range(1, len(dist))):
-            return max(dist[1:])
-        else:
-            return -1
+
+        max_dist = max(dist[1:])
+        return max_dist if max_dist < float('inf') else -1

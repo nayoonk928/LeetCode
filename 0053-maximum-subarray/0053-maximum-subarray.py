@@ -1,4 +1,3 @@
-# dp[0] = -2, dp[1] = -1/1 중에서 1 선택, dp[2] = -2/-3 중에서 -2 선택, dp[3] = 4/2 중에서 4 선택 ...
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         dp = [nums[0]]
@@ -9,4 +8,3 @@ class Solution:
         dp.sort()
         
         return dp[-1]
-        

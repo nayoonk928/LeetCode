@@ -5,6 +5,5 @@ class Solution:
         for i in range(1, len(nums)):
             dp.append(max(dp[i - 1] + nums[i], nums[i]))
         
-        dp.sort()
-        
-        return dp[-1]
+
+        return max(dp)
